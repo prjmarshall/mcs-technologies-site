@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact MCS Technologies</title>
+    <title>Contact | MCS Technologies</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
-
 <header>
     <div class="container">
         <h1 class="logo">MCS Technologies</h1>
@@ -22,31 +21,40 @@
     </div>
 </header>
 
-<section class="container">
-    <h2>Contact Us</h2>
-
-    <p>If you need help, have questions, or want to schedule service, reach out anytime.</p>
-
-    <div class="contact-box">
-        <p><strong>Email:</strong> support@mcstechnologies.com</p>
-        <p><strong>Phone:</strong> (add your number)</p>
-        <p><strong>Hours:</strong> Monday–Saturday, 9 AM – 7 PM CST</p>
+<section class="page-header">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p>We’re here to help with any questions or support needs.</p>
     </div>
+</section>
 
-    <h3>Send a Message</h3>
-    <p>(This is a placeholder — you can later connect it to a form service like Formspree.)</p>
+<section class="contact">
+    <div class="container two-col">
 
-    <form class="contact-form">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your Message" rows="5" required></textarea>
-        <button type="submit" class="btn">Send Message</button>
-    </form>
+        <div>
+            <h3>Get in Touch</h3>
+            <p><strong>Email:</strong> support@mcstechnologies.com</p>
+            <p><strong>Phone:</strong> (add your number)</p>
+            <p><strong>Hours:</strong> Mon–Sat, 9 AM – 7 PM CST</p>
+        </div>
+
+        <div class="contact-form">
+            <form>
+                <input type="text" placeholder="Your Name">
+                <input type="email" placeholder="Your Email">
+                <input type="text" placeholder="Phone Number">
+                <textarea placeholder="Describe your issue"></textarea>
+                <button class="btn">Submit</button>
+            </form>
+        </div>
+
+    </div>
 </section>
 
 <footer>
-    <p>© 2026 MCS Technologies</p>
+    © <span id="year"></span> MCS Technologies
 </footer>
 
+<script src="assets/js/main.js"></script>
 </body>
 </html>
