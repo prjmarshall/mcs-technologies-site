@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Support | MCS Technologies</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <h1 class="logo">MCS Technologies</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="remote-support.html">Remote Support</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="container">
+    <h2>Start Remote Support</h2>
+    <p>Click the button below to begin a secure remote session with an MCS technician.</p>
+
+    <div style="margin-top: 30px;">
+        <a class="btn" href="#">Start Session</a>
+    </div>
+
+    <h3 style="margin-top: 40px;">How It Works</h3>
+    <ul>
+        <li>You click “Start Session.”</li>
+        <li>You receive a one‑time secure access code.</li>
+        <li>We connect remotely and fix your issue.</li>
+        <li>You stay in full control — you can end the session anytime.</li>
+    </ul>
+</section>
+
+<footer>
+    <p>© 2026 MCS Technologies</p>
+</footer>
+
+</body>
+</html>

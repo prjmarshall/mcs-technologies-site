@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCS Technologies | Remote IT Support</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <h1 class="logo">MCS Technologies</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="remote-support.html">Remote Support</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h2>Fast, Simple, Secure Remote Tech Support</h2>
+        <p>We fix your computer issues without you ever leaving home.</p>
+        <a class="btn" href="remote-support.html">Start Remote Support</a>
+    </div>
+</section>
+
+<section class="services-preview container">
+    <h2>What We Do</h2>
+    <div class="grid">
+        <div class="card">Virus & Malware Removal</div>
+        <div class="card">PC Tune‑Ups</div>
+        <div class="card">Email Troubleshooting</div>
+        <div class="card">Printer Setup</div>
+        <div class="card">Wi‑Fi & Network Help</div>
+        <div class="card">Software Installation</div>
+    </div>
+    <a class="btn-secondary" href="services.html">View All Services</a>
+</section>
+
+<section class="why container">
+    <h2>Why Choose MCS Technologies</h2>
+    <ul>
+        <li>Fast Response Times</li>
+        <li>Affordable Pricing</li>
+        <li>Secure Remote Access</li>
+        <li>Friendly, Professional Service</li>
+        <li>No Geek‑Speak</li>
+    </ul>
+</section>
+
+<section class="cta">
+    <h2>Need Help Right Now?</h2>
+    <p>Start a secure remote session. Free diagnosis included.</p>
+    <a class="btn" href="remote-support.html">Start Remote Support</a>
+</section>
+
+<footer>
+    <p>© 2026 MCS Technologies — Remote IT Support</p>
+</footer>
+
+</body>
+</html>

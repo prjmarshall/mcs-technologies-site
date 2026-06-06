@@ -1,0 +1,176 @@
+/* ------------------------------
+   GLOBAL STYLES
+--------------------------------*/
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f7f7;
+    color: #222;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 0;
+}
+
+/* ------------------------------
+   HEADER
+--------------------------------*/
+header {
+    background: #111;
+    color: white;
+    padding: 15px 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------
+   HERO SECTION
+--------------------------------*/
+.hero {
+    background: #005eff;
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero .btn {
+    margin-top: 20px;
+}
+
+/* ------------------------------
+   BUTTONS
+--------------------------------*/
+.btn {
+    background: #ffcc00;
+    padding: 12px 25px;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.btn:hover {
+    background: #e6b800;
+}
+
+.btn-secondary {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-secondary:hover {
+    background: #555;
+}
+
+/* ------------------------------
+   GRID LAYOUTS
+--------------------------------*/
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* ------------------------------
+   PRICING
+--------------------------------*/
+.pricing-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.price-card {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 280px;
+    text-align: center;
+}
+
+.price {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* ------------------------------
+   CONTACT FORM
+--------------------------------*/
+.contact-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.contact-form button {
+    width: 100%;
+}
+
+/* ------------------------------
+   CTA SECTION
+--------------------------------*/
+.cta {
+    background: #005eff;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+/* ------------------------------
+   FOOTER
+--------------------------------*/
+footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact MCS Technologies</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <h1 class="logo">MCS Technologies</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="remote-support.html">Remote Support</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="container">
+    <h2>Contact Us</h2>
+
+    <p>If you need help, have questions, or want to schedule service, reach out anytime.</p>
+
+    <div class="contact-box">
+        <p><strong>Email:</strong> support@mcstechnologies.com</p>
+        <p><strong>Phone:</strong> (add your number)</p>
+        <p><strong>Hours:</strong> Monday–Saturday, 9 AM – 7 PM CST</p>
+    </div>
+
+    <h3>Send a Message</h3>
+    <p>(This is a placeholder — you can later connect it to a form service like Formspree.)</p>
+
+    <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2026 MCS Technologies</p>
+</footer>
+
+</body>
+</html>

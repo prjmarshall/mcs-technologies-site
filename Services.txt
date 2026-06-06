@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCS Services</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <h1 class="logo">MCS Technologies</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="remote-support.html">Remote Support</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="container">
+    <h2>Our Services</h2>
+
+    <div class="grid">
+        <div class="card">Virus & Malware Removal</div>
+        <div class="card">PC Tune‑Ups</div>
+        <div class="card">Email Troubleshooting</div>
+        <div class="card">Printer Setup</div>
+        <div class="card">Wi‑Fi & Network Help</div>
+        <div class="card">Software Installation</div>
+        <div class="card">Data Backup & Recovery</div>
+        <div class="card">New Computer Setup</div>
+        <div class="card">Business IT Support</div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 MCS Technologies</p>
+</footer>
+
+</body>
+</html>

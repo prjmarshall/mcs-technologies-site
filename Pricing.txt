@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCS Pricing</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <h1 class="logo">MCS Technologies</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="remote-support.html">Remote Support</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="container">
+    <h2>Pricing</h2>
+
+    <div class="pricing-grid">
+        <div class="price-card">
+            <h3>Basic Fix</h3>
+            <p class="price">$39</p>
+            <p>Quick fixes, email issues, small errors</p>
+        </div>
+
+        <div class="price-card">
+            <h3>Standard Repair</h3>
+            <p class="price">$69</p>
+            <p>Virus removal, tune‑ups, printer issues</p>
+        </div>
+
+        <div class="price-card">
+            <h3>Full System Repair</h3>
+            <p class="price">$99</p>
+            <p>Deep cleanup, optimization, full diagnostics</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 MCS Technologies</p>
+</footer>
+
+</body>
+</html>
