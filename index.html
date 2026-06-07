@@ -38,20 +38,17 @@
                     <p class="eyebrow">Book an Appointment</p>
                     <h2>Schedule your support visit</h2>
                 </div>
-                <div class="booking-calendar">
-                    <div class="calendar-day calendar-day--active">Mon<br><span>10</span></div>
-                    <div class="calendar-day">Tue<br><span>11</span></div>
-                    <div class="calendar-day">Wed<br><span>12</span></div>
-                    <div class="calendar-day">Thu<br><span>13</span></div>
-                    <div class="calendar-day">Fri<br><span>14</span></div>
+                <p class="booking-note">Available hours: 8:30 AM – 5:00 PM, Monday to Friday.</p>
+                <div class="booking-calendar" id="booking-calendar">
+                    <button type="button" class="calendar-day calendar-day--active" data-date="Mon 10">Mon<br><span>10</span></button>
+                    <button type="button" class="calendar-day" data-date="Tue 11">Tue<br><span>11</span></button>
+                    <button type="button" class="calendar-day" data-date="Wed 12">Wed<br><span>12</span></button>
+                    <button type="button" class="calendar-day" data-date="Thu 13">Thu<br><span>13</span></button>
+                    <button type="button" class="calendar-day" data-date="Fri 14">Fri<br><span>14</span></button>
                 </div>
-                <div class="booking-times">
-                    <button class="time-slot">10:00 AM</button>
-                    <button class="time-slot">11:30 AM</button>
-                    <button class="time-slot">1:00 PM</button>
-                    <button class="time-slot">2:30 PM</button>
-                </div>
-                <a class="btn btn-book" href="contact.html">Book Appointment</a>
+                <div class="booking-times" id="booking-times"></div>
+                <button type="button" class="btn btn-book" id="booking-submit">Book Appointment</button>
+                <div class="booking-confirmation" id="booking-confirmation" aria-live="polite"></div>
             </div>
         </div>
     </section>
@@ -68,6 +65,17 @@
             <div class="card">Printer Setup</div>
             <div class="card">Wi-Fi &amp; Network Help</div>
             <div class="card">Software Installation</div>
+        </div>
+    </section>
+
+    <section class="certification-prep container">
+        <div class="section-heading">
+            <p class="eyebrow">Certification Prep</p>
+            <h2>Get ready for IT certification with guided training and practice.</h2>
+        </div>
+        <div class="certification-card">
+            <p>Build the skills employers want with hands-on labs, exam-ready study plans, and expert support.</p>
+            <a class="btn btn-secondary" href="https://levelupit.base44.app" target="_blank" rel="noopener noreferrer">Visit Certification Prep</a>
         </div>
     </section>
 
