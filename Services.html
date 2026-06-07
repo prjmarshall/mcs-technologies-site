@@ -6,72 +6,71 @@
     <title>Services | MCS Technologies</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
-
 <body>
 <header>
-    <div class="container">
-        <h1 class="logo">MCS Technologies</h1>
-        <nav>
+    <div class="container header-inner">
+        <a class="logo" href="index.html">MCS Technologies</a>
+        <nav aria-label="Main navigation">
             <a href="index.html">Home</a>
-            <a href="services.html">Services</a>
-            <a href="pricing.html">Pricing</a>
+            <a href="Services.html" aria-current="page">Services</a>
+            <a href="Pricing.html">Pricing</a>
             <a href="remote-support.html">Remote Support</a>
             <a href="contact.html">Contact</a>
         </nav>
     </div>
 </header>
 
-<section class="page-header">
-    <div class="container">
-        <h2>Our Services</h2>
-        <p>Professional remote IT support for home users, small businesses, and ministries.</p>
-    </div>
-</section>
-
-<section class="services">
-    <div class="container service-grid">
-
-        <div class="service-card">
-            <img src="assets/img/virus.jpg" alt="Virus Removal">
-            <h3>Virus & Malware Removal</h3>
-            <p>Full system scan, threat removal, and protection setup.</p>
+<main>
+    <section class="page-header">
+        <div class="container">
+            <p class="eyebrow">Services</p>
+            <h1>Remote IT support for home users, small businesses, and ministries.</h1>
         </div>
+    </section>
 
-        <div class="service-card">
-            <img src="assets/img/tuneup.jpg" alt="PC Tune Ups">
-            <h3>PC Tune-Ups</h3>
-            <p>Speed optimization, cleanup, and performance boosting.</p>
+    <section class="services">
+        <div class="container service-grid">
+            <article class="service-card">
+                <span class="service-icon">!</span>
+                <h2>Virus &amp; Malware Removal</h2>
+                <p>Full system scan, threat removal, cleanup, and protection setup.</p>
+            </article>
+
+            <article class="service-card">
+                <span class="service-icon">+</span>
+                <h2>PC Tune-Ups</h2>
+                <p>Startup cleanup, performance optimization, and basic system maintenance.</p>
+            </article>
+
+            <article class="service-card">
+                <span class="service-icon">@</span>
+                <h2>Email Troubleshooting</h2>
+                <p>Help with login issues, syncing problems, password resets, and account setup.</p>
+            </article>
+
+            <article class="service-card">
+                <span class="service-icon">P</span>
+                <h2>Printer Setup</h2>
+                <p>Wireless printing setup, driver installation, and common printer errors.</p>
+            </article>
+
+            <article class="service-card">
+                <span class="service-icon">W</span>
+                <h2>Wi-Fi &amp; Network Help</h2>
+                <p>Improve connectivity, stability, and basic network performance.</p>
+            </article>
+
+            <article class="service-card">
+                <span class="service-icon">S</span>
+                <h2>Software Installation</h2>
+                <p>Setup assistance for Office, Zoom, antivirus, browser tools, and more.</p>
+            </article>
         </div>
-
-        <div class="service-card">
-            <img src="assets/img/email.jpg" alt="Email Troubleshooting">
-            <h3>Email Troubleshooting</h3>
-            <p>Fix login issues, syncing problems, and password resets.</p>
-        </div>
-
-        <div class="service-card">
-            <img src="assets/img/printer.jpg" alt="Printer Setup">
-            <h3>Printer Setup</h3>
-            <p>Wireless printing setup and error resolution.</p>
-        </div>
-
-        <div class="service-card">
-            <img src="assets/img/wifi.jpg" alt="Wi-Fi Help">
-            <h3>Wi-Fi & Network Help</h3>
-            <p>Improve speed, stability, and connectivity.</p>
-        </div>
-
-        <div class="service-card">
-            <img src="assets/img/software.jpg" alt="Software Installation">
-            <h3>Software Installation</h3>
-            <p>Office, Zoom, antivirus, and more.</p>
-        </div>
-
-    </div>
-</section>
+    </section>
+</main>
 
 <footer>
-    © <span id="year"></span> MCS Technologies
+    <p>&copy; <span id="year"></span> MCS Technologies</p>
 </footer>
 
 <script src="assets/js/main.js"></script>

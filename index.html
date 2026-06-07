@@ -6,63 +6,99 @@
     <title>MCS Technologies | Remote IT Support</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
-
 <body>
-
 <header>
-    <div class="container">
-        <h1 class="logo">MCS Technologies</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="services.html">Services</a>
-            <a href="pricing.html">Pricing</a>
+    <div class="container header-inner">
+        <a class="logo" href="index.html">MCS Technologies</a>
+        <nav aria-label="Main navigation">
+            <a href="index.html" aria-current="page">Home</a>
+            <a href="Services.html">Services</a>
+            <a href="Pricing.html">Pricing</a>
             <a href="remote-support.html">Remote Support</a>
             <a href="contact.html">Contact</a>
         </nav>
     </div>
 </header>
 
-<section class="hero">
-    <div class="container">
-        <h2>Fast, Simple, Secure Remote Tech Support</h2>
-        <p>We fix your computer issues without you ever leaving home.</p>
-        <a class="btn" href="remote-support.html">Start Remote Support</a>
-    </div>
-</section>
+<main>
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <p class="eyebrow">Remote IT support for homes and small organizations</p>
+                <h1>Fast, simple, secure tech support without leaving home.</h1>
+                <p>Get help with slow computers, viruses, Wi-Fi issues, email trouble, printers, software setup, and everyday technology problems.</p>
+                <div class="actions">
+                    <a class="btn" href="remote-support.html">Start Remote Support</a>
+                    <a class="btn-secondary" href="Services.html">View Services</a>
+                </div>
+            </div>
+            <div class="hero-panel" aria-label="Support highlights">
+                <div class="status-card">
+                    <span class="status-dot"></span>
+                    Secure remote session ready
+                </div>
+                <div class="metric">
+                    <strong>Free</strong>
+                    <span>initial diagnosis</span>
+                </div>
+                <div class="metric">
+                    <strong>One-time</strong>
+                    <span>access codes</span>
+                </div>
+                <div class="metric">
+                    <strong>Friendly</strong>
+                    <span>plain-English help</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section class="services-preview container">
-    <h2>What We Do</h2>
-    <div class="grid">
-        <div class="card">Virus & Malware Removal</div>
-        <div class="card">PC Tune‑Ups</div>
-        <div class="card">Email Troubleshooting</div>
-        <div class="card">Printer Setup</div>
-        <div class="card">Wi‑Fi & Network Help</div>
-        <div class="card">Software Installation</div>
-    </div>
-    <a class="btn-secondary" href="services.html">View All Services</a>
-</section>
+    <section class="services-preview container">
+        <div class="section-heading">
+            <p class="eyebrow">What we do</p>
+            <h2>Practical fixes for the tech problems that slow your day down.</h2>
+        </div>
+        <div class="grid">
+            <div class="card">Virus &amp; Malware Removal</div>
+            <div class="card">PC Tune-Ups</div>
+            <div class="card">Email Troubleshooting</div>
+            <div class="card">Printer Setup</div>
+            <div class="card">Wi-Fi &amp; Network Help</div>
+            <div class="card">Software Installation</div>
+        </div>
+    </section>
 
-<section class="why container">
-    <h2>Why Choose MCS Technologies</h2>
-    <ul>
-        <li>Fast Response Times</li>
-        <li>Affordable Pricing</li>
-        <li>Secure Remote Access</li>
-        <li>Friendly, Professional Service</li>
-        <li>No Geek‑Speak</li>
-    </ul>
-</section>
+    <section class="why">
+        <div class="container">
+            <div class="section-heading">
+                <p class="eyebrow">Why MCS Technologies</p>
+                <h2>Responsive support that keeps the process clear.</h2>
+            </div>
+            <ul class="check-list">
+                <li>Fast response times</li>
+                <li>Affordable pricing</li>
+                <li>Secure remote access</li>
+                <li>Friendly, professional service</li>
+                <li>No geek-speak</li>
+            </ul>
+        </div>
+    </section>
 
-<section class="cta">
-    <h2>Need Help Right Now?</h2>
-    <p>Start a secure remote session. Free diagnosis included.</p>
-    <a class="btn" href="remote-support.html">Start Remote Support</a>
-</section>
+    <section class="cta">
+        <div class="container cta-inner">
+            <div>
+                <h2>Need help right now?</h2>
+                <p>Start a secure remote session. Free diagnosis included.</p>
+            </div>
+            <a class="btn" href="remote-support.html">Start Remote Support</a>
+        </div>
+    </section>
+</main>
 
 <footer>
-    <p>© 2026 MCS Technologies — Remote IT Support</p>
+    <p>&copy; <span id="year"></span> MCS Technologies - Remote IT Support</p>
 </footer>
 
+<script src="assets/js/main.js"></script>
 </body>
 </html>

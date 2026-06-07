@@ -6,53 +6,64 @@
     <title>Contact | MCS Technologies</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
-
 <body>
 <header>
-    <div class="container">
-        <h1 class="logo">MCS Technologies</h1>
-        <nav>
+    <div class="container header-inner">
+        <a class="logo" href="index.html">MCS Technologies</a>
+        <nav aria-label="Main navigation">
             <a href="index.html">Home</a>
-            <a href="services.html">Services</a>
-            <a href="pricing.html">Pricing</a>
+            <a href="Services.html">Services</a>
+            <a href="Pricing.html">Pricing</a>
             <a href="remote-support.html">Remote Support</a>
-            <a href="contact.html">Contact</a>
+            <a href="contact.html" aria-current="page">Contact</a>
         </nav>
     </div>
 </header>
 
-<section class="page-header">
-    <div class="container">
-        <h2>Contact Us</h2>
-        <p>We’re here to help with any questions or support needs.</p>
-    </div>
-</section>
-
-<section class="contact">
-    <div class="container two-col">
-
-        <div>
-            <h3>Get in Touch</h3>
-            <p><strong>Email:</strong> support@mcstechnologies.com</p>
-            <p><strong>Phone:</strong> (add your number)</p>
-            <p><strong>Hours:</strong> Mon–Sat, 9 AM – 7 PM CST</p>
+<main>
+    <section class="page-header">
+        <div class="container">
+            <p class="eyebrow">Contact</p>
+            <h1>Tell us what is going on and we will help you get unstuck.</h1>
         </div>
+    </section>
 
-        <div class="contact-form">
-            <form>
-                <input type="text" placeholder="Your Name">
-                <input type="email" placeholder="Your Email">
-                <input type="text" placeholder="Phone Number">
-                <textarea placeholder="Describe your issue"></textarea>
-                <button class="btn">Submit</button>
-            </form>
+    <section class="contact">
+        <div class="container two-col">
+            <div>
+                <h2>Get in touch</h2>
+                <p><strong>Email:</strong> <a href="mailto:support@mcstechnologies.com">support@mcstechnologies.com</a></p>
+                <p><strong>Phone:</strong> (add your number)</p>
+                <p><strong>Hours:</strong> Mon-Sat, 9 AM - 7 PM CST</p>
+            </div>
+
+            <div class="contact-form">
+                <form>
+                    <label>
+                        <span>Your Name</span>
+                        <input type="text" name="name" autocomplete="name" required>
+                    </label>
+                    <label>
+                        <span>Your Email</span>
+                        <input type="email" name="email" autocomplete="email" required>
+                    </label>
+                    <label>
+                        <span>Phone Number</span>
+                        <input type="tel" name="phone" autocomplete="tel">
+                    </label>
+                    <label>
+                        <span>Describe your issue</span>
+                        <textarea name="message" required></textarea>
+                    </label>
+                    <button class="btn" type="submit">Submit</button>
+                </form>
+            </div>
         </div>
-
-    </div>
-</section>
+    </section>
+</main>
 
 <footer>
-    © <span id="year"></span> MCS Technologies
+    <p>&copy; <span id="year"></span> MCS Technologies</p>
 </footer>
 
 <script src="assets/js/main.js"></script>

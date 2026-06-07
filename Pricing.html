@@ -6,64 +6,64 @@
     <title>Pricing | MCS Technologies</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
-
 <body>
 <header>
-    <div class="container">
-        <h1 class="logo">MCS Technologies</h1>
-        <nav>
+    <div class="container header-inner">
+        <a class="logo" href="index.html">MCS Technologies</a>
+        <nav aria-label="Main navigation">
             <a href="index.html">Home</a>
-            <a href="services.html">Services</a>
-            <a href="pricing.html">Pricing</a>
+            <a href="Services.html">Services</a>
+            <a href="Pricing.html" aria-current="page">Pricing</a>
             <a href="remote-support.html">Remote Support</a>
             <a href="contact.html">Contact</a>
         </nav>
     </div>
 </header>
 
-<section class="page-header">
-    <div class="container">
-        <h2>Pricing</h2>
-        <p>Simple, transparent pricing. No hidden fees.</p>
-    </div>
-</section>
-
-<section class="pricing">
-    <div class="container pricing-grid">
-
-        <div class="price-card">
-            <h3>Basic Fix</h3>
-            <div class="price">$25</div>
-            <p>Quick issues & minor troubleshooting.</p>
+<main>
+    <section class="page-header">
+        <div class="container">
+            <p class="eyebrow">Pricing</p>
+            <h1>Simple, transparent pricing with no hidden fees.</h1>
         </div>
+    </section>
 
-        <div class="price-card">
-            <h3>Standard Support</h3>
-            <div class="price">$45</div>
-            <p>Most common repairs and fixes.</p>
+    <section class="pricing">
+        <div class="container pricing-grid">
+            <article class="price-card">
+                <h2>Basic Fix</h2>
+                <div class="price">$25</div>
+                <p>Quick issues and minor troubleshooting.</p>
+            </article>
+
+            <article class="price-card featured">
+                <p class="badge">Most common</p>
+                <h2>Standard Support</h2>
+                <div class="price">$45</div>
+                <p>Most everyday repairs and common fixes.</p>
+            </article>
+
+            <article class="price-card">
+                <h2>Advanced Repair</h2>
+                <div class="price">$65</div>
+                <p>Deep cleanup and more complex issues.</p>
+            </article>
+
+            <article class="price-card">
+                <h2>Monthly Maintenance</h2>
+                <div class="price">$20/mo</div>
+                <ul>
+                    <li>Monthly tune-up</li>
+                    <li>Priority support</li>
+                    <li>Discounted repairs</li>
+                </ul>
+            </article>
         </div>
-
-        <div class="price-card">
-            <h3>Advanced Repair</h3>
-            <div class="price">$65</div>
-            <p>Deep cleanup & complex issues.</p>
-        </div>
-
-        <div class="price-card">
-            <h3>Monthly Maintenance</h3>
-            <div class="price">$20/mo</div>
-            <ul>
-                <li>Monthly tune-up</li>
-                <li>Priority support</li>
-                <li>Discounted repairs</li>
-            </ul>
-        </div>
-
-    </div>
-</section>
+    </section>
+</main>
 
 <footer>
-    © <span id="year"></span> MCS Technologies
+    <p>&copy; <span id="year"></span> MCS Technologies</p>
 </footer>
 
 <script src="assets/js/main.js"></script>
