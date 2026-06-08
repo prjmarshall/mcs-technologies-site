@@ -654,6 +654,51 @@ nav a[aria-current="page"] {
     color: #ffffff;
 }
 
+.price-card.price-card--maintenance {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.12), rgba(59, 130, 246, 0.02));
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
+.price-card.price-card--basic {
+    background: linear-gradient(180deg, rgba(245, 158, 11, 0.12), rgba(245, 158, 11, 0.02));
+    border-color: rgba(245, 158, 11, 0.2);
+}
+
+.price-card.price-card--advanced {
+    background: linear-gradient(180deg, rgba(14, 165, 233, 0.12), rgba(14, 165, 233, 0.02));
+    border-color: rgba(14, 165, 233, 0.2);
+}
+
+.price-card__label {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.price-card__label--maintenance {
+    background: rgba(59, 130, 246, 0.18);
+    color: #0f3d77;
+}
+
+.price-card__label--basic {
+    background: rgba(245, 158, 11, 0.18);
+    color: #92400e;
+}
+
+.price-card__label--standard {
+    background: rgba(59, 130, 246, 0.32);
+    color: #ffffff;
+}
+
+.price-card__label--advanced {
+    background: rgba(14, 165, 233, 0.18);
+    color: #094e75;
+}
+
 .badge {
     display: inline-flex;
     margin: 0;
