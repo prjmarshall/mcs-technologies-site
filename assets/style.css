@@ -96,37 +96,6 @@ nav a[aria-current="page"] {
     z-index: 0;
 }
 
-.home-hero .hero-bg {
-    background: 
-        linear-gradient(135deg, rgba(6, 29, 60, 0.88), rgba(16, 52, 95, 0.72) 38%, rgba(10, 36, 71, 0.82) 100%),
-        radial-gradient(circle at 18% 38%, rgba(59, 130, 246, 0.16) 0%, transparent 40%),
-        radial-gradient(circle at 78% 74%, rgba(6, 182, 212, 0.12) 0%, transparent 40%);
-}
-
-.home-hero .hero-bg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image: 
-        linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 14px),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Ctext x='-10' y='32' font-family='monospace' font-size='24' fill='white' opacity='0.08'%3E0101010101010101%3C/text%3E%3C/svg%3E");
-    background-repeat: repeat, repeat;
-    background-size: 160px 160px, 160px 160px;
-    opacity: 0.9;
-    mix-blend-mode: screen;
-    animation: drift-stream 24s linear infinite;
-}
-
-@keyframes drift-stream {
-    from {
-        background-position: 0 0, 0 0;
-    }
-    to {
-        background-position: 120px 120px, 120px 120px;
-    }
-}
-
 .hero .container {
     position: relative;
     z-index: 1;
