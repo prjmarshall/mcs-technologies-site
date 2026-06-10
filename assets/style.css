@@ -105,9 +105,9 @@ nav a[aria-current="page"]::after {
 }
 
 .logo-name {
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 900;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     color: #16306e;
     -webkit-text-fill-color: #16306e;
 }
