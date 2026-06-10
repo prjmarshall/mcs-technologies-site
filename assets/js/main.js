@@ -4,7 +4,7 @@ if (year) {
     year.textContent = new Date().getFullYear();
 }
 
-function initMatrixRain() {
+function initParticleGrid() {
     const canvas = document.getElementById('hero-particles');
     if (!canvas) return;
 
@@ -17,19 +17,27 @@ function initMatrixRain() {
     let width = 0;
     let height = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let columns = [];
+    let particles = [];
     let animationId = null;
-    let lastTime = 0;
 
-    const FONT_SIZE = 16;
-    const STEP_MS = 55;
-    const GLYPHS = '01';
+    const LINK_DISTANCE = 150;
+    const POINTER = { x: null, y: null, radius: 170 };
 
-    function buildColumns() {
-        const count = Math.ceil(width / FONT_SIZE);
-        columns = [];
+    function particleCount() {
+        return Math.min(150, Math.round((width * height) / 9000));
+    }
+
+    function createParticles() {
+        particles = [];
+        const count = particleCount();
         for (let i = 0; i < count; i += 1) {
-            columns.push(Math.floor((Math.random() * height) / FONT_SIZE) * -1);
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                r: Math.random() * 1.8 + 1.4,
+            });
         }
     }
 
@@ -41,50 +49,70 @@ function initMatrixRain() {
         canvas.width = Math.round(width * dpr);
         canvas.height = Math.round(height * dpr);
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        ctx.font = FONT_SIZE + "px 'Courier New', monospace";
-        ctx.textBaseline = 'top';
-        buildColumns();
-        ctx.clearRect(0, 0, width, height);
+        createParticles();
     }
 
-    function tick() {
-        // Translucent fade leaves a trailing tail behind each glyph.
-        ctx.fillStyle = 'rgba(2, 12, 8, 0.12)';
-        ctx.fillRect(0, 0, width, height);
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
 
-        for (let i = 0; i < columns.length; i += 1) {
-            const x = i * FONT_SIZE;
-            const y = columns[i] * FONT_SIZE;
-            const char = GLYPHS.charAt(Math.floor(Math.random() * GLYPHS.length));
+        for (let i = 0; i < particles.length; i += 1) {
+            const p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
 
-            // Bright leading glyph.
-            ctx.fillStyle = 'rgba(190, 255, 200, 0.95)';
-            ctx.fillText(char, x, y);
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
 
-            // Softer glow just behind the head.
-            ctx.fillStyle = 'rgba(34, 197, 94, 0.55)';
-            ctx.fillText(GLYPHS.charAt(Math.floor(Math.random() * GLYPHS.length)), x, y - FONT_SIZE);
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.shadowColor = 'rgba(125, 211, 252, 0.9)';
+            ctx.shadowBlur = 8;
+            ctx.fillStyle = 'rgba(224, 242, 254, 0.95)';
+            ctx.fill();
+        }
+        ctx.shadowBlur = 0;
 
-            if (y > height && Math.random() > 0.975) {
-                columns[i] = 0;
-            } else {
-                columns[i] += 1;
+        for (let i = 0; i < particles.length; i += 1) {
+            for (let j = i + 1; j < particles.length; j += 1) {
+                const a = particles[i];
+                const b = particles[j];
+                const dx = a.x - b.x;
+                const dy = a.y - b.y;
+                const dist = Math.hypot(dx, dy);
+                if (dist < LINK_DISTANCE) {
+                    const alpha = (1 - dist / LINK_DISTANCE) * 0.65;
+                    ctx.beginPath();
+                    ctx.moveTo(a.x, a.y);
+                    ctx.lineTo(b.x, b.y);
+                    ctx.strokeStyle = `rgba(147, 197, 253, ${alpha})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+
+            if (POINTER.x !== null) {
+                const p = particles[i];
+                const dx = p.x - POINTER.x;
+                const dy = p.y - POINTER.y;
+                const dist = Math.hypot(dx, dy);
+                if (dist < POINTER.radius) {
+                    const alpha = (1 - dist / POINTER.radius) * 0.7;
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(POINTER.x, POINTER.y);
+                    ctx.strokeStyle = `rgba(245, 158, 11, ${alpha})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
             }
         }
-    }
 
-    function loop(now) {
-        if (now - lastTime >= STEP_MS) {
-            lastTime = now;
-            tick();
-        }
-        animationId = window.requestAnimationFrame(loop);
+        animationId = window.requestAnimationFrame(draw);
     }
 
     function start() {
         if (animationId === null) {
-            lastTime = 0;
-            animationId = window.requestAnimationFrame(loop);
+            animationId = window.requestAnimationFrame(draw);
         }
     }
 
@@ -93,6 +121,19 @@ function initMatrixRain() {
             window.cancelAnimationFrame(animationId);
             animationId = null;
         }
+    }
+
+    const hero = canvas.closest('.hero');
+    if (hero) {
+        hero.addEventListener('mousemove', (event) => {
+            const rect = canvas.getBoundingClientRect();
+            POINTER.x = event.clientX - rect.left;
+            POINTER.y = event.clientY - rect.top;
+        });
+        hero.addEventListener('mouseleave', () => {
+            POINTER.x = null;
+            POINTER.y = null;
+        });
     }
 
     window.addEventListener('resize', resize);
@@ -108,7 +149,7 @@ function initMatrixRain() {
     start();
 }
 
-initMatrixRain();
+initParticleGrid();
 
 const serviceButtons = document.querySelectorAll('.service-card-button');
 serviceButtons.forEach((button) => {
