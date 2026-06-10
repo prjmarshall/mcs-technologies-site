@@ -83,19 +83,48 @@ nav a[aria-current="page"]::after {
 }
 
 .logo {
-    color: var(--navy);
-    font-size: 22px;
-    font-weight: 800;
     text-decoration: none;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
+    gap: 12px;
+    -webkit-text-fill-color: initial;
+    background: none;
 }
 
-.logo img {
+.logo-mark {
     display: block;
-    height: 44px;
+    height: 50px;
     width: auto;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.logo-name {
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #16306e;
+    -webkit-text-fill-color: #16306e;
+}
+
+.logo-name .logo-c {
+    color: #e11d2a;
+    -webkit-text-fill-color: #e11d2a;
+}
+
+.logo-sub {
+    margin-top: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: #64748b;
+    -webkit-text-fill-color: #64748b;
 }
 
 nav {
