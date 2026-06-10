@@ -201,6 +201,15 @@ function initCircuitBoard() {
 
 initCircuitBoard();
 
+const expandableCards = document.querySelectorAll('.services-preview .card');
+expandableCards.forEach((card) => {
+    card.addEventListener('click', () => {
+        const expanded = card.getAttribute('aria-expanded') === 'true';
+        card.setAttribute('aria-expanded', String(!expanded));
+        card.classList.toggle('expanded', !expanded);
+    });
+});
+
 const serviceButtons = document.querySelectorAll('.service-card-button');
 serviceButtons.forEach((button) => {
     button.addEventListener('click', () => {

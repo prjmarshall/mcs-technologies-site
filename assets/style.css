@@ -591,14 +591,17 @@ p.eyebrow {
 
 .card {
     position: relative;
-    min-height: 96px;
+    width: 100%;
+    min-height: 84px;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 12px;
-    padding: 22px 22px 22px 26px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 22px 20px 26px;
     text-align: left;
+    font: inherit;
     font-weight: 700;
+    color: var(--ink);
+    cursor: pointer;
     overflow: hidden;
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
@@ -616,15 +619,53 @@ p.eyebrow {
     transition: transform 0.25s ease;
 }
 
-.card::after {
-    content: "";
+.card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-title {
+    flex: 1;
+}
+
+.card-dot {
     flex: 0 0 auto;
     width: 10px;
     height: 10px;
-    order: -1;
     border-radius: 50%;
     background: linear-gradient(135deg, #2563eb, #06b6d4);
     box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.card-toggle {
+    flex: 0 0 auto;
+    color: #2563eb;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    transition: transform 0.25s ease;
+}
+
+.card.expanded .card-toggle {
+    transform: rotate(45deg);
+}
+
+.card-desc {
+    max-height: 0;
+    margin: 0;
+    opacity: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--muted);
+    transition: max-height 0.3s ease, opacity 0.25s ease, margin 0.25s ease;
+}
+
+.card.expanded .card-desc {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 12px;
 }
 
 .card:hover {
@@ -633,8 +674,21 @@ p.eyebrow {
     border-color: rgba(37, 99, 235, 0.35);
 }
 
-.card:hover::before {
+.card:hover::before,
+.card.expanded::before {
     transform: scaleY(1);
+}
+
+.services-preview .grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.services-preview .card {
+    flex: 1 1 300px;
+    max-width: 340px;
 }
 
 .certification-prep {
