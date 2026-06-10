@@ -145,12 +145,12 @@ nav a[aria-current="page"] {
 .booking-calendar {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 6px;
+    gap: 4px;
 }
 
 .calendar-day {
-    padding: 8px 6px;
-    border-radius: 12px;
+    padding: 5px 4px;
+    border-radius: 10px;
     background: rgba(255, 255, 255, 0.08);
     text-align: center;
     font-weight: 700;
@@ -159,8 +159,8 @@ nav a[aria-current="page"] {
 
 .calendar-day span {
     display: block;
-    margin-top: 6px;
-    font-size: 16px;
+    margin-top: 3px;
+    font-size: 13px;
     color: #ffffff;
 }
 
@@ -198,10 +198,10 @@ nav a[aria-current="page"] {
     border: 1px solid rgba(255, 255, 255, 0.28);
     background: rgba(255, 255, 255, 0.08);
     color: #ffffff;
-    border-radius: 12px;
-    padding: 8px 10px;
+    border-radius: 10px;
+    padding: 6px 6px;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 12px;
     cursor: pointer;
     transition: all 0.25s ease;
 }
@@ -211,7 +211,7 @@ nav a[aria-current="page"] {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 60px;
+    min-height: 44px;
     width: 100%;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.18);
