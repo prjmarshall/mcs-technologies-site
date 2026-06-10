@@ -20,11 +20,11 @@ function initParticleGrid() {
     let particles = [];
     let animationId = null;
 
-    const LINK_DISTANCE = 150;
-    const POINTER = { x: null, y: null, radius: 170 };
+    const LINK_DISTANCE = 165;
+    const POINTER = { x: null, y: null, radius: 180 };
 
     function particleCount() {
-        return Math.min(150, Math.round((width * height) / 9000));
+        return Math.min(220, Math.round((width * height) / 6500));
     }
 
     function createParticles() {
@@ -65,9 +65,9 @@ function initParticleGrid() {
 
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.shadowColor = 'rgba(125, 211, 252, 0.9)';
-            ctx.shadowBlur = 8;
-            ctx.fillStyle = 'rgba(224, 242, 254, 0.95)';
+            ctx.shadowColor = 'rgba(147, 197, 253, 1)';
+            ctx.shadowBlur = 12;
+            ctx.fillStyle = 'rgba(239, 246, 255, 1)';
             ctx.fill();
         }
         ctx.shadowBlur = 0;
@@ -80,11 +80,11 @@ function initParticleGrid() {
                 const dy = a.y - b.y;
                 const dist = Math.hypot(dx, dy);
                 if (dist < LINK_DISTANCE) {
-                    const alpha = (1 - dist / LINK_DISTANCE) * 0.65;
+                    const alpha = (1 - dist / LINK_DISTANCE) * 0.85;
                     ctx.beginPath();
                     ctx.moveTo(a.x, a.y);
                     ctx.lineTo(b.x, b.y);
-                    ctx.strokeStyle = `rgba(147, 197, 253, ${alpha})`;
+                    ctx.strokeStyle = `rgba(191, 219, 254, ${alpha})`;
                     ctx.lineWidth = 1;
                     ctx.stroke();
                 }

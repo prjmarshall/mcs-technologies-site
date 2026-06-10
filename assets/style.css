@@ -78,7 +78,7 @@ nav a[aria-current="page"] {
 }
 
 .hero {
-    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1e40af 100%);
+    background: linear-gradient(120deg, #16306e 0%, #1e4fc0 55%, #2563eb 100%);
     color: #ffffff;
     position: relative;
     overflow: hidden;
@@ -91,8 +91,9 @@ nav a[aria-current="page"] {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.25) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
+        radial-gradient(circle at 88% 92%, rgba(96, 165, 250, 0.55) 0%, transparent 55%),
+        radial-gradient(circle at 72% 70%, rgba(56, 189, 248, 0.30) 0%, transparent 55%),
+        radial-gradient(circle at 15% 40%, rgba(59, 130, 246, 0.25) 0%, transparent 55%);
     z-index: 0;
 }
 
@@ -102,7 +103,7 @@ nav a[aria-current="page"] {
     width: 100%;
     height: 100%;
     z-index: 0;
-    opacity: 0.85;
+    opacity: 1;
     pointer-events: none;
 }
 
