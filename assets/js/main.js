@@ -4,7 +4,7 @@ if (year) {
     year.textContent = new Date().getFullYear();
 }
 
-function initParticleGrid() {
+function initCircuitBoard() {
     const canvas = document.getElementById('hero-particles');
     if (!canvas) return;
 
@@ -17,28 +17,101 @@ function initParticleGrid() {
     let width = 0;
     let height = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let particles = [];
     let animationId = null;
 
-    const LINK_DISTANCE = 165;
-    const POINTER = { x: null, y: null, radius: 180 };
+    const GRID = 46;
+    let edges = [];
+    let pulses = [];
 
-    function particleCount() {
-        return Math.min(220, Math.round((width * height) / 6500));
+    // Offscreen layer holds the static circuit traces + pads (re-rendered on resize)
+    const bg = document.createElement('canvas');
+    const bgCtx = bg.getContext('2d');
+
+    function buildBoard() {
+        const cols = Math.ceil(width / GRID) + 1;
+        const rows = Math.ceil(height / GRID) + 1;
+
+        // Decide which grid intersections host a node
+        const present = [];
+        for (let c = 0; c < cols; c += 1) {
+            present[c] = [];
+            for (let r = 0; r < rows; r += 1) {
+                present[c][r] = Math.random() < 0.55;
+            }
+        }
+
+        const nodeAt = (c, r) => ({ x: c * GRID, y: r * GRID });
+
+        edges = [];
+        for (let c = 0; c < cols; c += 1) {
+            for (let r = 0; r < rows; r += 1) {
+                if (!present[c][r]) continue;
+                // Connect rightward / downward to adjacent nodes (orthogonal traces)
+                if (c + 1 < cols && present[c + 1][r] && Math.random() < 0.7) {
+                    const a = nodeAt(c, r);
+                    const b = nodeAt(c + 1, r);
+                    edges.push({ ax: a.x, ay: a.y, bx: b.x, by: b.y, len: GRID });
+                }
+                if (r + 1 < rows && present[c][r + 1] && Math.random() < 0.7) {
+                    const a = nodeAt(c, r);
+                    const b = nodeAt(c, r + 1);
+                    edges.push({ ax: a.x, ay: a.y, bx: b.x, by: b.y, len: GRID });
+                }
+            }
+        }
+
+        // Render static traces + solder pads to the offscreen layer
+        bgCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        bgCtx.clearRect(0, 0, width, height);
+
+        bgCtx.lineWidth = 1.1;
+        bgCtx.strokeStyle = 'rgba(56, 189, 248, 0.18)';
+        for (let i = 0; i < edges.length; i += 1) {
+            const e = edges[i];
+            bgCtx.beginPath();
+            bgCtx.moveTo(e.ax, e.ay);
+            bgCtx.lineTo(e.bx, e.by);
+            bgCtx.stroke();
+        }
+
+        for (let c = 0; c < cols; c += 1) {
+            for (let r = 0; r < rows; r += 1) {
+                if (!present[c][r]) continue;
+                const { x, y } = nodeAt(c, r);
+                if (Math.random() < 0.22) {
+                    // Larger solder pad with ring
+                    bgCtx.fillStyle = 'rgba(125, 211, 252, 0.55)';
+                    bgCtx.beginPath();
+                    bgCtx.arc(x, y, 2.6, 0, Math.PI * 2);
+                    bgCtx.fill();
+                    bgCtx.strokeStyle = 'rgba(125, 211, 252, 0.30)';
+                    bgCtx.lineWidth = 1;
+                    bgCtx.beginPath();
+                    bgCtx.arc(x, y, 5, 0, Math.PI * 2);
+                    bgCtx.stroke();
+                } else {
+                    bgCtx.fillStyle = 'rgba(148, 197, 253, 0.35)';
+                    bgCtx.fillRect(x - 1.2, y - 1.2, 2.4, 2.4);
+                }
+            }
+        }
+
+        // Spawn data pulses traveling along traces
+        const count = Math.min(46, Math.round(edges.length * 0.09) + 6);
+        pulses = [];
+        for (let i = 0; i < count; i += 1) {
+            pulses.push(spawnPulse());
+        }
     }
 
-    function createParticles() {
-        particles = [];
-        const count = particleCount();
-        for (let i = 0; i < count; i += 1) {
-            particles.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 0.4,
-                vy: (Math.random() - 0.5) * 0.4,
-                r: Math.random() * 1.8 + 1.4,
-            });
-        }
+    function spawnPulse() {
+        const edge = edges.length ? edges[Math.floor(Math.random() * edges.length)] : null;
+        return {
+            edge,
+            t: Math.random(),
+            speed: 0.010 + Math.random() * 0.018,
+            forward: Math.random() < 0.5,
+        };
     }
 
     function resize() {
@@ -48,63 +121,53 @@ function initParticleGrid() {
         dpr = Math.min(window.devicePixelRatio || 1, 2);
         canvas.width = Math.round(width * dpr);
         canvas.height = Math.round(height * dpr);
+        bg.width = canvas.width;
+        bg.height = canvas.height;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        createParticles();
+        buildBoard();
     }
 
     function draw() {
         ctx.clearRect(0, 0, width, height);
+        ctx.drawImage(bg, 0, 0, width, height);
 
-        for (let i = 0; i < particles.length; i += 1) {
-            const p = particles[i];
-            p.x += p.vx;
-            p.y += p.vy;
+        const TAIL = 26;
+        for (let i = 0; i < pulses.length; i += 1) {
+            const p = pulses[i];
+            if (!p.edge) { pulses[i] = spawnPulse(); continue; }
 
-            if (p.x < 0 || p.x > width) p.vx *= -1;
-            if (p.y < 0 || p.y > height) p.vy *= -1;
+            p.t += p.speed;
+            if (p.t >= 1) { pulses[i] = spawnPulse(); continue; }
 
+            const e = p.edge;
+            const sx = p.forward ? e.ax : e.bx;
+            const sy = p.forward ? e.ay : e.by;
+            const dxn = (p.forward ? e.bx - e.ax : e.ax - e.bx);
+            const dyn = (p.forward ? e.by - e.ay : e.ay - e.by);
+            const hx = sx + dxn * p.t;
+            const hy = sy + dyn * p.t;
+            const len = Math.hypot(dxn, dyn) || 1;
+            const tx = hx - (dxn / len) * TAIL;
+            const ty = hy - (dyn / len) * TAIL;
+
+            const grad = ctx.createLinearGradient(tx, ty, hx, hy);
+            grad.addColorStop(0, 'rgba(56, 189, 248, 0)');
+            grad.addColorStop(1, 'rgba(125, 211, 252, 0.85)');
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = 2.2;
+            ctx.lineCap = 'round';
             ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.shadowColor = 'rgba(147, 197, 253, 1)';
-            ctx.shadowBlur = 12;
-            ctx.fillStyle = 'rgba(239, 246, 255, 1)';
+            ctx.moveTo(tx, ty);
+            ctx.lineTo(hx, hy);
+            ctx.stroke();
+
+            ctx.shadowColor = 'rgba(56, 189, 248, 0.95)';
+            ctx.shadowBlur = 10;
+            ctx.fillStyle = 'rgba(224, 242, 254, 1)';
+            ctx.beginPath();
+            ctx.arc(hx, hy, 1.9, 0, Math.PI * 2);
             ctx.fill();
-        }
-        ctx.shadowBlur = 0;
-
-        for (let i = 0; i < particles.length; i += 1) {
-            for (let j = i + 1; j < particles.length; j += 1) {
-                const a = particles[i];
-                const b = particles[j];
-                const dx = a.x - b.x;
-                const dy = a.y - b.y;
-                const dist = Math.hypot(dx, dy);
-                if (dist < LINK_DISTANCE) {
-                    const alpha = (1 - dist / LINK_DISTANCE) * 0.85;
-                    ctx.beginPath();
-                    ctx.moveTo(a.x, a.y);
-                    ctx.lineTo(b.x, b.y);
-                    ctx.strokeStyle = `rgba(191, 219, 254, ${alpha})`;
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            }
-
-            if (POINTER.x !== null) {
-                const p = particles[i];
-                const dx = p.x - POINTER.x;
-                const dy = p.y - POINTER.y;
-                const dist = Math.hypot(dx, dy);
-                if (dist < POINTER.radius) {
-                    const alpha = (1 - dist / POINTER.radius) * 0.7;
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(POINTER.x, POINTER.y);
-                    ctx.strokeStyle = `rgba(245, 158, 11, ${alpha})`;
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            }
+            ctx.shadowBlur = 0;
         }
 
         animationId = window.requestAnimationFrame(draw);
@@ -123,19 +186,6 @@ function initParticleGrid() {
         }
     }
 
-    const hero = canvas.closest('.hero');
-    if (hero) {
-        hero.addEventListener('mousemove', (event) => {
-            const rect = canvas.getBoundingClientRect();
-            POINTER.x = event.clientX - rect.left;
-            POINTER.y = event.clientY - rect.top;
-        });
-        hero.addEventListener('mouseleave', () => {
-            POINTER.x = null;
-            POINTER.y = null;
-        });
-    }
-
     window.addEventListener('resize', resize);
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
@@ -149,7 +199,7 @@ function initParticleGrid() {
     start();
 }
 
-initParticleGrid();
+initCircuitBoard();
 
 const serviceButtons = document.querySelectorAll('.service-card-button');
 serviceButtons.forEach((button) => {
