@@ -4,7 +4,7 @@ if (year) {
     year.textContent = new Date().getFullYear();
 }
 
-function initParticleGrid() {
+function initMatrixRain() {
     const canvas = document.getElementById('hero-particles');
     if (!canvas) return;
 
@@ -17,27 +17,19 @@ function initParticleGrid() {
     let width = 0;
     let height = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let particles = [];
+    let columns = [];
     let animationId = null;
+    let lastTime = 0;
 
-    const LINK_DISTANCE = 130;
-    const POINTER = { x: null, y: null, radius: 150 };
+    const FONT_SIZE = 16;
+    const STEP_MS = 55;
+    const GLYPHS = '01';
 
-    function particleCount() {
-        return Math.min(90, Math.round((width * height) / 14000));
-    }
-
-    function createParticles() {
-        particles = [];
-        const count = particleCount();
+    function buildColumns() {
+        const count = Math.ceil(width / FONT_SIZE);
+        columns = [];
         for (let i = 0; i < count; i += 1) {
-            particles.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 0.4,
-                vy: (Math.random() - 0.5) * 0.4,
-                r: Math.random() * 1.6 + 1,
-            });
+            columns.push(Math.floor((Math.random() * height) / FONT_SIZE) * -1);
         }
     }
 
@@ -49,67 +41,50 @@ function initParticleGrid() {
         canvas.width = Math.round(width * dpr);
         canvas.height = Math.round(height * dpr);
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        createParticles();
+        ctx.font = FONT_SIZE + "px 'Courier New', monospace";
+        ctx.textBaseline = 'top';
+        buildColumns();
+        ctx.clearRect(0, 0, width, height);
     }
 
-    function draw() {
-        ctx.clearRect(0, 0, width, height);
+    function tick() {
+        // Translucent fade leaves a trailing tail behind each glyph.
+        ctx.fillStyle = 'rgba(2, 12, 8, 0.12)';
+        ctx.fillRect(0, 0, width, height);
 
-        for (let i = 0; i < particles.length; i += 1) {
-            const p = particles[i];
-            p.x += p.vx;
-            p.y += p.vy;
+        for (let i = 0; i < columns.length; i += 1) {
+            const x = i * FONT_SIZE;
+            const y = columns[i] * FONT_SIZE;
+            const char = GLYPHS.charAt(Math.floor(Math.random() * GLYPHS.length));
 
-            if (p.x < 0 || p.x > width) p.vx *= -1;
-            if (p.y < 0 || p.y > height) p.vy *= -1;
+            // Bright leading glyph.
+            ctx.fillStyle = 'rgba(190, 255, 200, 0.95)';
+            ctx.fillText(char, x, y);
 
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(186, 230, 253, 0.85)';
-            ctx.fill();
-        }
+            // Softer glow just behind the head.
+            ctx.fillStyle = 'rgba(34, 197, 94, 0.55)';
+            ctx.fillText(GLYPHS.charAt(Math.floor(Math.random() * GLYPHS.length)), x, y - FONT_SIZE);
 
-        for (let i = 0; i < particles.length; i += 1) {
-            for (let j = i + 1; j < particles.length; j += 1) {
-                const a = particles[i];
-                const b = particles[j];
-                const dx = a.x - b.x;
-                const dy = a.y - b.y;
-                const dist = Math.hypot(dx, dy);
-                if (dist < LINK_DISTANCE) {
-                    const alpha = (1 - dist / LINK_DISTANCE) * 0.5;
-                    ctx.beginPath();
-                    ctx.moveTo(a.x, a.y);
-                    ctx.lineTo(b.x, b.y);
-                    ctx.strokeStyle = `rgba(125, 211, 252, ${alpha})`;
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            }
-
-            if (POINTER.x !== null) {
-                const p = particles[i];
-                const dx = p.x - POINTER.x;
-                const dy = p.y - POINTER.y;
-                const dist = Math.hypot(dx, dy);
-                if (dist < POINTER.radius) {
-                    const alpha = (1 - dist / POINTER.radius) * 0.7;
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(POINTER.x, POINTER.y);
-                    ctx.strokeStyle = `rgba(245, 158, 11, ${alpha})`;
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
+            if (y > height && Math.random() > 0.975) {
+                columns[i] = 0;
+            } else {
+                columns[i] += 1;
             }
         }
+    }
 
-        animationId = window.requestAnimationFrame(draw);
+    function loop(now) {
+        if (now - lastTime >= STEP_MS) {
+            lastTime = now;
+            tick();
+        }
+        animationId = window.requestAnimationFrame(loop);
     }
 
     function start() {
         if (animationId === null) {
-            animationId = window.requestAnimationFrame(draw);
+            lastTime = 0;
+            animationId = window.requestAnimationFrame(loop);
         }
     }
 
@@ -118,19 +93,6 @@ function initParticleGrid() {
             window.cancelAnimationFrame(animationId);
             animationId = null;
         }
-    }
-
-    const hero = canvas.closest('.hero');
-    if (hero) {
-        hero.addEventListener('mousemove', (event) => {
-            const rect = canvas.getBoundingClientRect();
-            POINTER.x = event.clientX - rect.left;
-            POINTER.y = event.clientY - rect.top;
-        });
-        hero.addEventListener('mouseleave', () => {
-            POINTER.x = null;
-            POINTER.y = null;
-        });
     }
 
     window.addEventListener('resize', resize);
@@ -146,7 +108,7 @@ function initParticleGrid() {
     start();
 }
 
-initParticleGrid();
+initMatrixRain();
 
 const serviceButtons = document.querySelectorAll('.service-card-button');
 serviceButtons.forEach((button) => {
