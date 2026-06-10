@@ -826,6 +826,19 @@ p.eyebrow {
     position: relative;
 }
 
+.pricing-grid {
+    align-items: stretch;
+}
+
+.price-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.price-card ul {
+    margin-bottom: 0;
+}
+
 .price-card.featured {
     border-color: #f59e0b;
     background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
